@@ -1,4 +1,4 @@
-package data.model
+package com.helios.web.portfolio.data.model
 
 sealed class SocialLink(val name: String, open val url: String) {
     data class GitHub(override val url: String) : SocialLink("GitHub", url)

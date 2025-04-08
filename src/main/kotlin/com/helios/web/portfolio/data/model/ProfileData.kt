@@ -1,4 +1,4 @@
-package data.model
+package com.helios.web.portfolio.data.model
 
 data class ProfileData(
     val name: String,

@@ -133,7 +133,7 @@
                         </#list>
                     </ol>
                     <div class="mt-12">
-                        <a class="inline-flex items-baseline font-medium leading-tight text-slate-200 hover:text-[#64ffda] focus-visible:text-[#64ffda] font-semibold text-slate-200 group/link text-base" href="/DuyPham_CV.pdf" target="_blank" rel="noreferrer">
+                        <a class="inline-flex items-baseline font-medium leading-tight text-slate-200 hover:text-[#64ffda] focus-visible:text-[#64ffda] font-semibold text-slate-200 group/link text-base" href="/resume" target="_blank" rel="noreferrer">
                             <span>
                                 View Full
                                 <span class="inline-block">
@@ -206,6 +206,6 @@
             </a>
         </p>
     </footer>
-    <script src="/js/main.js"></script>
+    <script src="static/js/main.js"></script>
 </body>
 </html>

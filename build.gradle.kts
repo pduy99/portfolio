@@ -1,24 +1,48 @@
+val kotlin_version: String by project
+val logback_version: String by project
+val html_builder_version: String by project
+val freemarker_version: String by project
 
 plugins {
-    kotlin("jvm") version "1.9.0"
-    application
+    kotlin("jvm") version "2.0.21"
+    id("io.ktor.plugin") version "3.0.0"
+    kotlin("plugin.serialization") version "2.0.20"
 }
 
-group = "com.helios"
-version = "1.0-SNAPSHOT"
+group = "com.helios.web.portfolio"
+version = "1.0.0"
 
 application {
-    mainClass.set("MainKt")
-}
+    mainClass.set("io.ktor.server.netty.EngineMain")
 
-dependencies {
-    implementation("io.ktor:ktor-server-core-jvm:2.3.4")
-    implementation("io.ktor:ktor-server-netty-jvm:2.3.4")
-    implementation("io.ktor:ktor-server-freemarker-jvm:2.3.4")
-    implementation("io.ktor:ktor-server-html-builder-jvm:2.3.4")
-    implementation("ch.qos.logback:logback-classic:1.4.11")
+    val isDevelopment: Boolean = project.ext.has("development")
+    applicationDefaultJvmArgs = listOf("-Dio.ktor.development=$isDevelopment")
 }
 
 repositories {
     mavenCentral()
+}
+
+ktor {
+    fatJar {
+        archiveFileName.set("helios-portfolio.jar")
+    }
+}
+
+dependencies {
+    implementation("io.ktor:ktor-server-core-jvm")
+    implementation("io.ktor:ktor-server-netty")
+    implementation("io.ktor:ktor-server-freemarker")
+    implementation("io.ktor:ktor-server-resources")
+    implementation("io.ktor:ktor-server-sessions")
+    implementation("io.ktor:ktor-server-conditional-headers")
+    implementation("io.ktor:ktor-server-default-headers")
+    implementation("io.ktor:ktor-server-partial-content")
+    implementation("io.ktor:ktor-server-call-logging")
+    implementation("io.ktor:ktor-network-tls-certificates")
+    implementation("io.ktor:ktor-server-html-builder:$html_builder_version")
+    implementation("ch.qos.logback:logback-classic:$logback_version")
+    implementation("org.freemarker:freemarker:$freemarker_version")
+    testImplementation("io.ktor:ktor-server-test-host-jvm")
+    testImplementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version")
 }

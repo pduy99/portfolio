@@ -1,13 +1,13 @@
-package data
+package com.helios.web.portfolio.data
 
-import data.model.AboutContent
-import data.model.ContentData
-import data.model.ExperienceItem
-import data.model.ProfileData
-import data.model.ProjectItem
-import data.model.SectionData
-import data.model.SocialLink
-import data.model.TechnologyTag
+import com.helios.web.portfolio.data.model.AboutContent
+import com.helios.web.portfolio.data.model.ContentData
+import com.helios.web.portfolio.data.model.ExperienceItem
+import com.helios.web.portfolio.data.model.ProfileData
+import com.helios.web.portfolio.data.model.ProjectItem
+import com.helios.web.portfolio.data.model.SectionData
+import com.helios.web.portfolio.data.model.SocialLink
+import com.helios.web.portfolio.data.model.TechnologyTag
 
 object DataProvider {
     fun getProfileData() = ProfileData(
@@ -111,7 +111,7 @@ object DataProvider {
             ProjectItem(
                 name = "SunVerta Translation App",
                 url = "https://github.com/pduy99/HeliosTranslator",
-                imageUrl = "/images/projects/sunverta.jpg",
+                imageUrl = "/static/images/projects/sunverta.jpg",
                 description = "SunVerta is a comprehensive translation application built with Kotlin Compose Multiplatform (KMP), offering multiple translation methods.",
                 technologies = listOf(
                     TechnologyTag("Kotlin Multiplatform"),
@@ -129,7 +129,7 @@ object DataProvider {
             ProjectItem(
                 name = "KMM File System",
                 url = "https://github.com/pduy99/KMMFile",
-                imageUrl = "/images/projects/KMMFile.jpg",
+                imageUrl = "/static/images/projects/KMMFile.jpg",
                 description = "KMMFile is an utility library helps applications working with File System (Android/iOS) in Kotlin Multiplatform.",
                 technologies = listOf(
                     TechnologyTag("Kotlin Multiplatform"),
@@ -138,13 +138,14 @@ object DataProvider {
             ),
             ProjectItem(
                 name = "Personal Portfolio Template",
-                url = "#",
-                imageUrl = "/images/projects/portfolio_website.png",
+                url = "https://github.com/pduy99/portfolio",
+                imageUrl = "/static/images/projects/portfolio_website.png",
                 description = "A modern, customizable portfolio template built with Kotlin and Freemarker. Features a clean, responsive design inspired by popular portfolio layouts, supporting dynamic content management and easy customization.",
                 technologies = listOf(
                     TechnologyTag("Kotlin Ktor Server"),
                     TechnologyTag("Freemarker Template"),
                     TechnologyTag("Tailwind CSS"),
+                    TechnologyTag("Docker"),
                 )
             ),
         ),
