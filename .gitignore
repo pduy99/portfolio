@@ -62,3 +62,6 @@ out/
 .vscode/
 
 helios_portfolio.jks
+
+# CV Storage
+storage/cv/

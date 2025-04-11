@@ -1,17 +1,23 @@
 package com.helios.web.portfolio.routing
 
 import io.ktor.http.ContentDisposition
-import io.ktor.http.ContentType
 import io.ktor.http.HttpHeaders
+import io.ktor.server.application.call
 import io.ktor.server.resources.get
 import io.ktor.server.response.header
-import io.ktor.server.response.respondOutputStream
+import io.ktor.server.response.respondFile
 import io.ktor.server.routing.Route
+import java.io.File
 
 fun Route.resume() {
     get<Resume> {
-        val inputStream = this::class.java.classLoader.getResourceAsStream("static/DuyPham_CV.pdf")
-            ?: throw IllegalStateException("Resume file not found")
+        val config = environment.config
+        val cvDirectory = config.property("storage.cv.directory").getString()
+        val cvFile = File(cvDirectory, "DuyPham_CV.pdf")
+
+        if (!cvFile.exists()) {
+            throw IllegalStateException("Resume file not found at ${cvFile.absolutePath}")
+        }
 
         call.response.header(
             HttpHeaders.ContentDisposition,
@@ -20,8 +26,6 @@ fun Route.resume() {
                 "DuyPham_CV.pdf"
             ).toString()
         )
-        call.respondOutputStream(ContentType.Application.Pdf) {
-            inputStream.copyTo(this)
-        }
+        call.respondFile(cvFile)
     }
 }
