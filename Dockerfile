@@ -33,7 +33,7 @@ RUN keytool -keystore /helios_portfolio.jks \
 # Stage 4: Create the Runtime Image
 FROM amazoncorretto:22 AS runtime
 EXPOSE 2502:2502
-RUN mkdir /app
+RUN mkdir -p /app/storage/cv
 COPY --from=build /helios_portfolio.jks /./helios_portfolio.jks
 COPY --from=build /home/gradle/src/build/libs/*.jar /app/ktor-docker-sample.jar
 ENTRYPOINT ["java","-jar","/app/ktor-docker-sample.jar"]
