@@ -1,0 +1,61 @@
+{
+  "profile": {
+    "name": "Duy Pham",
+    "title": "Android Engineer",
+    "about": "I craft modern Android applications using the latest technologies. Always exploring new ways to build better, more performant native experiences.",
+    "social": [
+      {
+        "type": "GitHub",
+        "url": "https://github.com/pduy99"
+      },
+      {
+        "type": "LinkedIn",
+        "url": "https://www.linkedin.com/in/duy-pham-helios/"
+      }
+    ]
+  },
+  "content": {
+    "about": {
+      "paragraphs": [
+        "I'm a passionate and results-driven Android Developer with expertise in building high-performance applications and SDKs. Skilled in Kotlin, Jetpack Compose, and Kotlin Multiplatform, with a strong focus on Clean Architecture and modern development practices.",
+        "Currently, I'm an Android Engineer at what3words. I contribute to the what3words Android app and build public and private UI component libraries that allow others to integrate what3words functionality into their own applications.",
+        "In my spare time, I'm usually playing chess, video games, hanging with my friends or exploring new technologies in native Android app development."
+      ]
+    },
+    "experience": [
+      {
+        "dateRange": "October 2023 — Present",
+        "company": "what3words",
+        "companyUrl": "https://what3words.com/about",
+        "title": "Senior Android Engineer",
+        "description": "Build and maintain core features of the what3words Android app. Design and develop public and private UI component libraries that allow others to integrate what3words functionality into their own applications.",
+        "technologies": [
+          "Kotlin Android",
+          "Kotlin Multiplatform",
+          "Jetpack Compose",
+          "Coroutines",
+          "Retrofit",
+          "MVVM",
+          "Clean Architecture",
+          "Dagger Hilt"
+        ]
+      }
+    ],
+    "projects": [
+      {
+        "name": "SunVerta Translation App",
+        "url": "https://github.com/pduy99/HeliosTranslator",
+        "imageUrl": "/static/images/projects/sunverta.jpg",
+        "description": "SunVerta is a comprehensive translation application built with Kotlin Compose Multiplatform (KMP), offering multiple translation methods.",
+        "technologies": [
+          "Kotlin Multiplatform",
+          "Jetpack Compose",
+          "Coroutines",
+          "SQLDelight",
+          "Ktor",
+          "Material Design"
+        ]
+      }
+    ]
+  }
+}

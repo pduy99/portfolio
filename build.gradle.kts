@@ -43,6 +43,7 @@ dependencies {
     implementation("io.ktor:ktor-server-html-builder:$html_builder_version")
     implementation("ch.qos.logback:logback-classic:$logback_version")
     implementation("org.freemarker:freemarker:$freemarker_version")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.2")
     testImplementation("io.ktor:ktor-server-test-host-jvm")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version")
 }
