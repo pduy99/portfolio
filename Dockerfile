@@ -35,7 +35,7 @@ ENV KEYSTORE_PASSWORD=$KEYSTORE_PASSWORD
 
 RUN mkdir -p /app/storage/cv
 COPY --from=build /helios_portfolio.jks /app/helios_portfolio.jks
-COPY --from=build /home/gradle/src/build/libs/*.jar /app/ktor-app.jar
+COPY --from=build /home/gradle/src/build/libs/helios-portfolio.jar /app/ktor-app.jar
 
 WORKDIR /app
-ENTRYPOINT ["java","-jar","/app/ktor-app.jar"]
+ENTRYPOINT ["java", "-jar", "/app/ktor-app.jar"]
