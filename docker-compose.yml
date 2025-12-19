@@ -1,0 +1,16 @@
+services:
+  helios-portfolio:
+    # Use the image name that GitHub Actions will build
+    image: ghcr.io/pduy99/portfolio:latest
+    container_name: helios_app
+    restart: always
+    ports:
+      - "2502:2502"
+    environment:
+      # These variables pass secrets into your app safely
+      - KEYSTORE_PASSWORD=${SSL_KEYSTORE_PASS}
+      - KEY_PASSWORD=${SSL_KEY_PASS}
+    volumes:
+      # This saves your uploaded CVs on your real hard drive
+      # even if the container is deleted/updated
+      - ./storage/cv:/app/storage/cv
