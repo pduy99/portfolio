@@ -28,16 +28,57 @@
         "company": "what3words",
         "companyUrl": "https://what3words.com/about",
         "title": "Senior Android Engineer",
-        "description": "Build and maintain core features of the what3words Android app. Design and develop public and private UI component libraries that allow others to integrate what3words functionality into their own applications.",
+        "description": "Build and maintain core features of the what3words Android app. Design and develop public and private UI component libraries that allow others to integrate what3words functionality into their own applications. I'm also working on the what3words automotive app.",
         "technologies": [
           "Kotlin Android",
           "Kotlin Multiplatform",
           "Jetpack Compose",
           "Coroutines",
           "Retrofit",
+          "MVVM/MVI",
+          "Clean Architecture",
+          "Dagger Hilt",
+          "Android Automotive App"
+        ]
+      },
+      {
+        "dateRange": "March 2025 — Present",
+        "company": "Confidential",
+        "companyUrl": "",
+        "title": "Freelancer",
+        "description": "I independently developed a WearOS application designed for dental clinics to streamline daily operations for dentists and their staff. The app enhances workflow efficiency in dental practices by providing convenient access to essential functions through a wearable interface.",
+        "technologies": [
+          "WearOS",
+          "Jetpack Compose",
+          "Ktor",
           "MVVM",
           "Clean Architecture",
           "Dagger Hilt"
+        ]
+      },
+      {
+        "dateRange": "November 2021 — October 2023",
+        "company": "Fossil Vietnam",
+        "companyUrl": "https://www.fossilgroup.com/",
+        "title": "Device Integration Engineer",
+        "description": "Participated in building a new Wearables Framework (inspired by Android WearOS) from scratch for the next generation of Fossil smartwatches. Spearheaded the development and ownership of the core modules of the framework, including SensorManager, HealthServiceManager, and LocationManager. Optimized code and memory usage, enabling the framework to run on smartwatches with only 5MB of RAM, supporting up to 12 installed applications.",
+        "technologies": [
+          "Android Framework",
+          "Java",
+          "Protocol Buffers",
+          "SNI/JNI"
+        ]
+      },
+      {
+        "dateRange": "December 2020 — March 2021",
+        "company": "SaigonSmart",
+        "companyUrl": "",
+        "title": "Android Developer, Contractor",
+        "description": "Worked as a part-time developer during university, developing and publishing two Android applications on the Play Store.",
+        "technologies": [
+          "Kotlin Android",
+          "MongoDB",
+          "Kotlin Coroutines"
         ]
       }
     ],
@@ -50,10 +91,34 @@
         "technologies": [
           "Kotlin Multiplatform",
           "Jetpack Compose",
+          "MVI",
           "Coroutines",
           "SQLDelight",
           "Ktor",
           "Material Design"
+        ]
+      },
+      {
+        "name": "KMM File System",
+        "url": "https://github.com/pduy99/KMMFile",
+        "imageUrl": "/static/images/projects/KMMFile.jpg",
+        "description": "KMMFile is an utility library helps applications working with File System (Android/iOS) in Kotlin Multiplatform.",
+        "technologies": [
+          "Kotlin Multiplatform",
+          "Maven Publishing"
+        ]
+      },
+      {
+        "name": "Personal Portfolio Template",
+        "url": "https://github.com/pduy99/portfolio",
+        "imageUrl": "/static/images/projects/portfolio_website.png",
+        "description": "A modern, customizable portfolio template built with Kotlin Ktor and Freemarker. Features a clean, responsive design inspired by popular portfolio layouts, supporting dynamic content management and easy customization.",
+        "technologies": [
+          "Kotlin Ktor Server",
+          "Freemarker Template",
+          "Tailwind CSS",
+          "Docker",
+          "Self-hosted Server"
         ]
       }
     ]
