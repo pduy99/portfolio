@@ -10,7 +10,6 @@ class Index
 
 fun Application.configureRouting() {
     routing {
-        styles()
         index()
         resume()
         payment()
