@@ -8,13 +8,12 @@ import io.ktor.server.routing.routing
 @Resource("/")
 class Index
 
-@Resource("/resume")
-class Resume
-
 fun Application.configureRouting() {
     routing {
+        styles()
         index()
         resume()
+        payment()
         staticResources("/static", "static")
     }
 }
