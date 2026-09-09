@@ -28,6 +28,3 @@ jobs:
           context: .
           push: true
           tags: ghcr.io/${{ github.repository }}:latest
-          build-args: |
-            KEYSTORE_PASSWORD=${{ secrets.KEYSTORE_PASSWORD }}
-            KEY_PASSWORD=${{ secrets.KEY_PASSWORD }}
