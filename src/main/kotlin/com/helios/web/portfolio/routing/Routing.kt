@@ -13,6 +13,7 @@ fun Application.configureRouting() {
         index()
         resume()
         payment()
+        stats()
         staticResources("/static", "static")
     }
 }

@@ -65,3 +65,7 @@ helios_portfolio.jks
 
 # CV Storage
 storage/cv/
+
+# Written at runtime / by tests
+portfolio-config.json
+stats.json

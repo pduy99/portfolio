@@ -29,12 +29,21 @@ ktor {
     }
 }
 
+// Forwarded so the /stats authentication path can be exercised locally:
+//   STATS_PASSWORD=secret ./gradlew test
+// Absent, it is empty, which is the same as unset and keeps the fail-closed test honest.
+tasks.test {
+    environment("STATS_PASSWORD", System.getenv("STATS_PASSWORD") ?: "")
+    environment("STATS_USER", System.getenv("STATS_USER") ?: "")
+}
+
 dependencies {
     implementation("io.ktor:ktor-server-core-jvm")
     implementation("io.ktor:ktor-server-netty")
     implementation("io.ktor:ktor-server-freemarker")
     implementation("io.ktor:ktor-server-resources")
     implementation("io.ktor:ktor-server-sessions")
+    implementation("io.ktor:ktor-server-auth")
     implementation("io.ktor:ktor-server-conditional-headers")
     implementation("io.ktor:ktor-server-default-headers")
     implementation("io.ktor:ktor-server-partial-content")
@@ -45,5 +54,6 @@ dependencies {
     implementation("org.freemarker:freemarker:$freemarker_version")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.2")
     testImplementation("io.ktor:ktor-server-test-host-jvm")
+    testImplementation("io.ktor:ktor-client-auth")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version")
 }

@@ -10,6 +10,10 @@ services:
       # These variables pass secrets into your app safely
       - KEYSTORE_PASSWORD=${SSL_KEYSTORE_PASS}
       - KEY_PASSWORD=${SSL_KEY_PASS}
+      # Credentials for the /stats visitor dashboard.
+      # With no password set, /stats refuses to serve rather than opening up.
+      - STATS_USER=${STATS_USER}
+      - STATS_PASSWORD=${STATS_PASSWORD}
     volumes:
       # This saves your uploaded CVs on your real hard drive
       # even if the container is deleted/updated
