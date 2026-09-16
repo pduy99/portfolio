@@ -13,6 +13,10 @@ fi
 
 KEY_PASSWORD="${KEY_PASSWORD:-$KEYSTORE_PASSWORD}"
 
+# A restarted container keeps the keystore from its previous start, and keytool refuses to
+# generate into it, so start from a clean file every time.
+rm -f /app/helios_portfolio.jks
+
 keytool -keystore /app/helios_portfolio.jks \
     -alias heliosAlias \
     -genkeypair \
@@ -21,7 +25,6 @@ keytool -keystore /app/helios_portfolio.jks \
     -validity 365 \
     -storepass "$KEYSTORE_PASSWORD" \
     -keypass "$KEY_PASSWORD" \
-    -dname 'CN=localhost, OU=ktor, O=ktor, L=Unspecified, ST=Unspecified, C=US' \
-    > /dev/null
+    -dname 'CN=localhost, OU=ktor, O=ktor, L=Unspecified, ST=Unspecified, C=US'
 
 exec java -jar /app/ktor-app.jar "$@"
