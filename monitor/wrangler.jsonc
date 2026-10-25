@@ -1,0 +1,29 @@
+{
+  "$schema": "../node_modules/wrangler/config-schema.json",
+  "name": "phpduy-monitor",
+  "main": "src/index.js",
+  "compatibility_date": "2026-10-01",
+  "workers_dev": true,
+  "observability": { "enabled": true },
+  "triggers": {
+    // Uptime check every 5 minutes; weekly summary on Mondays at 01:00 UTC (08:00 in Vietnam).
+    "crons": ["*/5 * * * *", "0 1 * * MON"]
+  },
+  "vars": {
+    "SITE_URL": "https://phpduy.dev",
+    "TIME_ZONE": "Asia/Ho_Chi_Minh",
+    "FROM_EMAIL": "monitor@phpduy.dev",
+    "TO_EMAIL": "phuocduypham2502@gmail.com"
+  },
+  "kv_namespaces": [
+    // Holds the uptime state between runs.
+    { "binding": "STATE", "id": "7e1312a9653e436aa05f904efb8d8099" }
+  ],
+  "send_email": [
+    // Restricted to the verified Email Routing destination, so the Worker can only email the owner.
+    { "name": "EMAIL", "destination_address": "phuocduypham2502@gmail.com" }
+  ]
+  // Secrets, set with `npx wrangler secret put <NAME>`:
+  //   STATS_USER, STATS_PASSWORD  the /stats login, for the weekly summary
+  //   TRIGGER_TOKEN               bearer token for POST /run/check and POST /run/summary
+}

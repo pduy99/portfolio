@@ -23,5 +23,8 @@ jobs:
       - name: Build and Test
         run: ./gradlew build
 
+      - name: Test monitor Worker
+        run: node --test monitor/test/
+
       - name: Docker Build Check
         run: docker build .
