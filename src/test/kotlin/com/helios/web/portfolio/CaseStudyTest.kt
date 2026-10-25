@@ -47,6 +47,9 @@ class CaseStudyTest {
         for (asset in listOf("demo-landscape.mp4", "demo-portrait.mp4", "demo-landscape.jpg", "demo-portrait.jpg", "app-icon.png")) {
             assertNotNull(javaClass.classLoader.getResource("static/media/case-studies/shot-clock/$asset"), asset)
         }
+        for (asset in listOf("store-map.jpg", "store-search.jpg", "store-voice.jpg", "store-car.jpg")) {
+            assertNotNull(javaClass.classLoader.getResource("static/media/case-studies/what3words/$asset"), asset)
+        }
     }
 
     @Test
@@ -72,13 +75,16 @@ class CaseStudyTest {
     }
 
     @Test
-    fun `a project links to its case study only when the slug exists`() = withApp(
+    fun `projects and roles link to their case studies only when the slug exists`() = withApp(
         portfolioConfig = """
         {
           "profile": { "name": "Duy Pham", "title": "Senior Android Engineer", "about": "About.", "social": [] },
           "content": {
             "about": { "paragraphs": ["Hi."] },
-            "experience": [],
+            "experience": [
+              { "dateRange": "October 2023 - Present", "company": "what3words", "companyUrl": null,
+                "title": "Senior Android Engineer", "description": "Android lead.", "technologies": [], "caseStudy": "what3words" }
+            ],
             "projects": [
               { "name": "Shot Clock", "url": "https://play.google.com/store/apps/details?id=com.helios.shotclock",
                 "imageUrl": null, "description": "Screenshots with an expiry date.", "technologies": [], "caseStudy": "shot-clock" },
@@ -91,6 +97,7 @@ class CaseStudyTest {
     ) {
         val html = client.get("/").bodyAsText()
         assertContains(html, """href="/projects/shot-clock"""")
+        assertContains(html, """href="/projects/what3words"""")
         assertFalse(html.contains("/projects/does-not-exist"))
     }
 }

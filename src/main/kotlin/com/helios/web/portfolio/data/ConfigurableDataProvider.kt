@@ -53,7 +53,9 @@ data class ExperienceConfig(
     val companyUrl: String?,
     val title: String,
     val description: String,
-    val technologies: List<String>
+    val technologies: List<String>,
+    /** Slug of a case study in [CaseStudies]; unknown slugs are ignored. */
+    val caseStudy: String? = null,
 )
 
 @Serializable
@@ -111,7 +113,8 @@ class ConfigurableDataProvider(
                     companyUrl = exp.companyUrl ?: "",
                     title = exp.title,
                     description = exp.description,
-                    technologies = exp.technologies.map { TechnologyTag(it) }
+                    technologies = exp.technologies.map { TechnologyTag(it) },
+                    caseStudyPath = exp.caseStudy?.let { CaseStudies.find(it) }?.path
                 )
             },
             projects = config.content.projects.map { proj ->

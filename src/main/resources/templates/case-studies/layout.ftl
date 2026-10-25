@@ -64,8 +64,8 @@
                     <#list toc as item>
                         <li>
                             <a class="group flex items-center py-2" href="#${item.id}">
-                                <span class="nav-number mr-3 w-5 font-['JetBrains_Mono'] text-xs text-[#495670] group-hover:text-[#64ffda]">${(item?index + 1)?string["00"]}</span>
-                                <span class="nav-indicator mr-3 h-px w-5 bg-[#233554] transition-all group-hover:w-10 group-hover:bg-[#64ffda] motion-reduce:transition-none"></span>
+                                <span class="nav-number mr-3 w-5 shrink-0 font-['JetBrains_Mono'] text-xs text-[#495670] group-hover:text-[#64ffda]">${(item?index + 1)?string["00"]}</span>
+                                <span class="nav-indicator mr-3 h-px w-5 shrink-0 bg-[#233554] transition-all group-hover:w-10 group-hover:bg-[#64ffda] motion-reduce:transition-none"></span>
                                 <span class="nav-text text-sm text-[#8892b0] group-hover:text-[#e2e8f0]">${item.label}</span>
                             </a>
                         </li>
