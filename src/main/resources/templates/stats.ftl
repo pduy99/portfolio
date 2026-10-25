@@ -46,8 +46,8 @@
                 <span class="ml-auto font-medium normal-case tracking-normal text-[#8892b0]">Last 30 days</span>
             </div>
 
-            <div class="overflow-x-auto rounded border border-[#233554] p-5">
-                <div class="flex min-w-[640px] items-end gap-1" style="height: 180px;">
+            <div class="rounded border border-[#233554] p-3 sm:p-5">
+                <div class="flex items-end gap-px sm:gap-1" style="height: 180px;">
                     <#list stats.days as day>
                         <div class="group relative flex h-full flex-1 items-end gap-0.5" title="${day.label}: ${day.site?c} visitors, ${day.resume?c} CV">
                             <div class="w-1/2 rounded-t-sm bg-[#64ffda]/80 transition-all group-hover:bg-[#64ffda]"
@@ -57,13 +57,88 @@
                         </div>
                     </#list>
                 </div>
-                <div class="mt-3 flex min-w-[640px] gap-1 text-[10px] text-[#8892b0]">
+                <div class="mt-3 flex gap-px text-[10px] text-[#8892b0] sm:gap-1">
                     <#list stats.days as day>
                         <div class="flex-1 text-center"><#if day?index % 5 == 0>${day.label}</#if></div>
                     </#list>
                 </div>
             </div>
             <p class="mt-3 text-xs">Peak day in this window: ${stats.maxCount?c}. Bars are scaled to it.</p>
+        </section>
+
+        <section class="mt-12">
+            <h2 class="text-xs font-bold uppercase tracking-widest text-[#ccd6f6]">Where visitors come from</h2>
+            <#if stats.sourceRows?has_content>
+                <div class="mt-4 rounded border border-[#233554]">
+                    <table class="w-full text-left text-sm">
+                        <thead>
+                            <tr class="border-b border-[#233554] text-xs uppercase tracking-widest">
+                                <th class="px-3 py-3 font-bold sm:px-5">Source</th>
+                                <th class="whitespace-nowrap px-3 py-3 text-right font-bold sm:px-5">7 days</th>
+                                <th class="whitespace-nowrap px-3 py-3 text-right font-bold sm:px-5">All time</th>
+                                <th class="px-3 py-3 text-right font-bold sm:px-5">CV</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <#list stats.sourceRows as row>
+                                <tr class="border-b border-[#233554]/60 last:border-0">
+                                    <td class="w-full px-3 py-3 sm:px-5">
+                                        <div class="break-words font-medium text-[#ccd6f6]">${row.name?html}</div>
+                                        <div class="mt-1.5 h-1 rounded-full bg-[#233554]">
+                                            <div class="h-1 rounded-full bg-[#64ffda]/80" style="width: ${row.share?c}%;"></div>
+                                        </div>
+                                    </td>
+                                    <td class="px-3 py-3 text-right tabular-nums sm:px-5">${row.weekSite?c}</td>
+                                    <td class="px-3 py-3 text-right tabular-nums text-[#ccd6f6] sm:px-5">${row.site?c}</td>
+                                    <td class="px-3 py-3 text-right tabular-nums text-[#7c5cff] sm:px-5">${row.resume?c}</td>
+                                </tr>
+                            </#list>
+                        </tbody>
+                    </table>
+                </div>
+                <p class="mt-3 text-xs">
+                    Unique visitors, counted since ${stats.sourcesSince}.
+                    A CV opened from the site counts toward the source that brought the visitor.
+                    Add <code class="text-[#ccd6f6]">?ref=name</code> to a link you share to give it its own row.
+                </p>
+            <#else>
+                <p class="mt-4 rounded border border-[#233554] p-5 text-sm">No visits with a known source yet.</p>
+            </#if>
+        </section>
+
+        <section class="mt-12">
+            <h2 class="text-xs font-bold uppercase tracking-widest text-[#ccd6f6]">Résumé links</h2>
+            <#if stats.links?has_content>
+                <div class="mt-4 rounded border border-[#233554]">
+                    <table class="w-full text-left text-sm">
+                        <thead>
+                            <tr class="border-b border-[#233554] text-xs uppercase tracking-widest">
+                                <th class="px-3 py-3 font-bold sm:px-5">Link</th>
+                                <th class="px-3 py-3 text-right font-bold sm:px-5">Opens</th>
+                                <th class="hidden whitespace-nowrap px-3 py-3 font-bold sm:table-cell sm:px-5">First opened</th>
+                                <th class="whitespace-nowrap px-3 py-3 font-bold sm:px-5">Last opened</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <#list stats.links as link>
+                                <tr class="border-b border-[#233554]/60 last:border-0">
+                                    <td class="w-full break-words px-3 py-3 font-medium text-[#ccd6f6] sm:px-5">/r/${link.name?html}</td>
+                                    <td class="px-3 py-3 text-right tabular-nums text-[#64ffda] sm:px-5">${link.opens?c}</td>
+                                    <td class="hidden whitespace-nowrap px-3 py-3 sm:table-cell sm:px-5">${link.firstOpenedLabel}</td>
+                                    <td class="px-3 py-3 sm:whitespace-nowrap sm:px-5">${link.lastOpenedLabel}</td>
+                                </tr>
+                            </#list>
+                        </tbody>
+                    </table>
+                </div>
+            <#else>
+                <p class="mt-4 rounded border border-[#233554] p-5 text-sm">No tracked links opened yet.</p>
+            </#if>
+            <p class="mt-3 text-xs">
+                Send <code class="text-[#ccd6f6]">${site.baseUrl?replace("https://", "")}/r/company</code> with an application to see when that company opens your CV.
+                Any lowercase name with letters, digits and dashes works, with no setup.
+                Each visitor counts once per link per day.
+            </p>
         </section>
 
         <footer class="mt-12 text-xs">
