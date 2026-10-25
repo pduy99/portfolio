@@ -191,6 +191,12 @@
                                         </a>
                                     </h3>
                                     <p class="mt-2 text-sm leading-normal">${project.description}</p>
+                                    <#if project.caseStudyPath??>
+                                        <a href="${project.caseStudyPath}" class="group/case relative z-10 mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-[#64ffda] focus-visible:underline">
+                                            Read the case study
+                                            <svg viewBox="0 0 20 20" fill="currentColor" class="h-4 w-4 transition-transform group-hover/case:translate-x-1 motion-reduce:transition-none" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z" clip-rule="evenodd"/></svg>
+                                        </a>
+                                    </#if>
                                     <#if project.stars??>
                                         <div class="mt-2 text-sm font-medium text-slate-400">⭐ ${project.stars}</div>
                                     </#if>
