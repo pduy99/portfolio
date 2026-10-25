@@ -32,6 +32,15 @@ object CaseStudies {
                 "without a prompt each time, and releasing through a fully automated Play pipeline.",
             previewImage = "/static/media/case-studies/shot-clock/preview.jpg",
         ),
+        CaseStudy(
+            slug = "what3words",
+            template = "case-studies/what3words.ftl",
+            title = "what3words",
+            summary = "Leading Android at what3words: rebuilding the main map and search on MVI and Jetpack Compose, " +
+                "an open-source map component for Google Maps and Mapbox, a Kotlin Multiplatform search library " +
+                "that iOS can extend in Swift, and AI Chat and Voice for Pro.",
+            previewImage = "/static/media/case-studies/what3words/preview.jpg",
+        ),
     )
 
     private val bySlug = all.associateBy { it.slug }
