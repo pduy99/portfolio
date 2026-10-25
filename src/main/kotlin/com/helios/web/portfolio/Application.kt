@@ -15,6 +15,7 @@ import io.ktor.server.auth.UserIdPrincipal
 import io.ktor.server.auth.basic
 import io.ktor.server.freemarker.FreeMarker
 import io.ktor.server.netty.EngineMain
+import io.ktor.server.plugins.autohead.AutoHeadResponse
 import io.ktor.server.plugins.calllogging.CallLogging
 import io.ktor.server.plugins.conditionalheaders.ConditionalHeaders
 import io.ktor.server.plugins.defaultheaders.DefaultHeaders
@@ -41,6 +42,9 @@ fun Application.module() {
     install(ConditionalHeaders)
     // Supports for Range, Accept-Range and Content-Range headers
     install(PartialContent)
+    // Answers HEAD for every GET route. Without it HEAD falls through to 404, which breaks
+    // link checkers, crawlers and uptime probes. Visit counting skips HEAD (see recordVisit).
+    install(AutoHeadResponse)
     // Allows using classes annotated with @Resource to represent URLs.
     // They are typed, can be constructed to generate URLs, and can be used to register routes.
     install(Resources)

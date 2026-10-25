@@ -1,8 +1,7 @@
 package com.helios.web.portfolio.routing
 
 import com.helios.web.portfolio.stats.Target
-import com.helios.web.portfolio.stats.clientIp
-import com.helios.web.portfolio.stats.statsStore
+import com.helios.web.portfolio.stats.recordVisit
 import io.ktor.http.ContentDisposition
 import io.ktor.http.HttpHeaders
 import io.ktor.resources.Resource
@@ -30,9 +29,7 @@ fun Route.resume() {
         // A single PDF view produces several requests once PartialContent starts
         // serving ranges, so only the opening request is counted.
         if (call.request.header(HttpHeaders.Range) == null) {
-            call.application.statsStore.record(
-                Target.RESUME, call.clientIp(), call.request.header(HttpHeaders.UserAgent)
-            )
+            call.recordVisit(Target.RESUME)
         }
 
         call.response.header(

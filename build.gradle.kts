@@ -47,6 +47,7 @@ dependencies {
     implementation("io.ktor:ktor-server-conditional-headers")
     implementation("io.ktor:ktor-server-default-headers")
     implementation("io.ktor:ktor-server-partial-content")
+    implementation("io.ktor:ktor-server-auto-head-response")
     implementation("io.ktor:ktor-server-call-logging")
     implementation("io.ktor:ktor-network-tls-certificates")
     implementation("io.ktor:ktor-server-html-builder:$html_builder_version")
