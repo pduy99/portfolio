@@ -33,7 +33,7 @@ fun Route.seo(site: Site) {
             |<?xml version="1.0" encoding="UTF-8"?>
             |<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
             |  <url><loc>${site.baseUrl}/</loc></url>
-            |</urlset>
+            |${CaseStudies.all.joinToString("") { "  <url><loc>${site.baseUrl}${it.path}</loc></url>\n" }}            |</urlset>
             |""".trimMargin(),
             ContentType.Application.Xml
         )

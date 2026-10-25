@@ -8,6 +8,7 @@ import com.helios.web.portfolio.data.model.ProjectItem
 import com.helios.web.portfolio.data.model.SectionData
 import com.helios.web.portfolio.data.model.SocialLink
 import com.helios.web.portfolio.data.model.TechnologyTag
+import com.helios.web.portfolio.routing.CaseStudies
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
@@ -61,7 +62,9 @@ data class ProjectConfig(
     val url: String?,
     val imageUrl: String?,
     val description: String,
-    val technologies: List<String>
+    val technologies: List<String>,
+    /** Slug of a case study in [CaseStudies]; unknown slugs are ignored. */
+    val caseStudy: String? = null,
 )
 
 class ConfigurableDataProvider(
@@ -117,7 +120,8 @@ class ConfigurableDataProvider(
                     url = proj.url ?: "",
                     imageUrl = proj.imageUrl ?: "",
                     description = proj.description,
-                    technologies = proj.technologies.map { TechnologyTag(it) }
+                    technologies = proj.technologies.map { TechnologyTag(it) },
+                    caseStudyPath = proj.caseStudy?.let { CaseStudies.find(it) }?.path
                 )
             }
         )

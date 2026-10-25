@@ -16,6 +16,7 @@ fun Application.configureRouting(site: Site) {
         payment()
         stats()
         seo(site)
+        caseStudies()
         staticResources("/static", "static")
     }
 }
