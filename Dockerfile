@@ -1,4 +1,15 @@
-# Stage 1: Build Application and Cache
+# Stage 1: Compile the Tailwind stylesheet from the templates
+FROM node:22-alpine AS css
+WORKDIR /src
+COPY package.json package-lock.json ./
+RUN npm ci --no-audit --no-fund
+COPY tailwind.config.js ./
+COPY src/main/css ./src/main/css
+COPY src/main/resources/templates ./src/main/resources/templates
+COPY src/main/resources/static/js ./src/main/resources/static/js
+RUN npm run build:css
+
+# Stage 2: Build Application and Cache
 FROM gradle:8-jdk22 AS build
 WORKDIR /home/gradle/src
 
@@ -8,9 +19,10 @@ RUN gradle build --no-daemon > /dev/null 2>&1 || true
 
 # Copy full source and build the JAR
 COPY --chown=gradle:gradle . .
+COPY --from=css --chown=gradle:gradle /src/src/main/resources/static/css/site.css src/main/resources/static/css/site.css
 RUN gradle buildFatJar --no-daemon
 
-# Stage 2: Create the Runtime Image
+# Stage 3: Create the Runtime Image
 FROM amazoncorretto:22 AS runtime
 EXPOSE 2502
 
