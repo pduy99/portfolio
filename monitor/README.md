@@ -12,7 +12,7 @@ The `send_email` binding only allows that address.
 ## Develop
 
 ```bash
-node --test test/            # unit tests, no dependencies
+node --test test/*.test.js   # unit tests, no dependencies
 npx wrangler dev --test-scheduled
 curl "http://localhost:8787/__scheduled?cron=*/5+*+*+*+*"
 ```
