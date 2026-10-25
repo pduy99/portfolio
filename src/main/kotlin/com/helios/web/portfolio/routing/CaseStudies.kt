@@ -36,9 +36,9 @@ object CaseStudies {
             slug = "what3words",
             template = "case-studies/what3words.ftl",
             title = "what3words",
-            summary = "Leading Android at what3words: rebuilding the main map and search on MVI and Jetpack Compose, " +
-                "an open-source map component for Google Maps and Mapbox, a Kotlin Multiplatform search library " +
-                "that iOS can extend in Swift, and AI Chat and Voice for Pro.",
+            summary = "Senior Android work at what3words: rebuilding the main map and search on MVI and Jetpack Compose " +
+                "with 82% less worst-case jank, an open-source map component for Google Maps and Mapbox, a Kotlin " +
+                "Multiplatform search library that iOS can extend in Swift, and the AI features that launched Pro.",
             previewImage = "/static/media/case-studies/what3words/preview.jpg",
         ),
     )

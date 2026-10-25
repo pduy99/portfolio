@@ -21,8 +21,8 @@
             </div>
             <h1 class="mt-6 text-5xl font-extrabold tracking-tight text-[#ccd6f6] sm:text-6xl">what3words</h1>
             <p class="mt-5 max-w-xl text-lg leading-8 text-[#a8b2d1] sm:text-xl">
-                Leading Android on a maps app with more than 10 million downloads:
-                a rebuild of its busiest screens, two open-source libraries, and AI features for Pro.
+                Senior Android engineer on a maps app with more than 10 million downloads:
+                a rebuild of one of its most complex features, open-source libraries, and the AI features that launched Pro.
             </p>
             <div class="mt-8 flex flex-wrap items-center gap-3">
                 <a href="https://play.google.com/store/apps/details?id=com.what3words.android" target="_blank" rel="noreferrer"
@@ -36,7 +36,7 @@
         <dl class="grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-[#233554] bg-[#233554] lg:col-span-5">
             <div class="bg-[#0a192f] p-5">
                 <dt class="text-xs font-bold uppercase tracking-widest">Role</dt>
-                <dd class="mt-2 text-sm text-[#ccd6f6]">Android lead: architecture, standards and technology choices</dd>
+                <dd class="mt-2 text-sm text-[#ccd6f6]">Senior engineer, shaping architecture, standards and technology choices with the Android lead</dd>
             </div>
             <div class="bg-[#0a192f] p-5">
                 <dt class="text-xs font-bold uppercase tracking-widest">Team</dt>
@@ -78,14 +78,14 @@
             <dd class="mt-1 text-sm">lines, from the map and search rebuild</dd>
         </div>
         <div>
-            <dt class="text-xs font-bold uppercase tracking-widest">UI performance</dt>
-            <dd class="mt-2 text-4xl font-bold text-[#64ffda]">82%</dd>
-            <dd class="mt-1 text-sm">better on the main map screen, measured with Macrobenchmark</dd>
+            <dt class="text-xs font-bold uppercase tracking-widest">Worst-case jank</dt>
+            <dd class="mt-2 text-4xl font-bold text-[#64ffda]">−82%</dd>
+            <dd class="mt-1 text-sm">P99 frame overrun on the main map, from 178 ms to 31 ms</dd>
         </div>
         <div>
             <dt class="text-xs font-bold uppercase tracking-widest">Open source</dt>
-            <dd class="mt-2 text-4xl font-bold text-[#64ffda]">2</dd>
-            <dd class="mt-1 text-sm">libraries I led: the map component and the KMP search wrapper</dd>
+            <dd class="mt-2 text-4xl font-bold text-[#64ffda]">5+</dd>
+            <dd class="mt-1 text-sm">libraries I contributed to, including the map component and the KMP search wrapper</dd>
         </div>
     </dl>
 </section>
@@ -99,14 +99,15 @@
     </p>
     <p>
         The Android app has more than 10 million downloads, so its two core screens carry most of the product: the map where you find and select a square, and the search that gets you there.
-        I joined as a senior Android engineer and became the lead for the Android side,
-        working with product, design and the iOS engineers on what to build, and owning how Android builds it.
+        I joined as a senior Android engineer.
+        Together with the Android lead, I shape the team's architecture, standards and technology choices, and on some projects those decisions were mine alone.
+        I work closely with product, design and the iOS engineers on what to build and how.
     </p>
 </@cs.section>
 
-<@cs.section id="rebuild" number="02" title="Rebuilding the most complex screens" kicker="Map and search">
+<@cs.section id="rebuild" number="02" title="Rebuilding one of the most complex features" kicker="Map and search">
     <p>
-        The main map and search were the most complex feature in the app, and the oldest.
+        The main map and search were one of the most complex features in the app.
         They were built on XML views and LiveData, slow and hard to maintain, and the map had to handle hundreds of markers at once.
         Every new feature made the screen a little harder to reason about.
     </p>
@@ -165,20 +166,66 @@
         That replaced the app's own marker and camera code and gave the screen one map API, whichever provider is underneath.
     </p>
     <p>
-        I implemented Macrobenchmark tests for the main map screen, so the result was a measurement rather than a feeling.
+        To know whether the rebuild actually helped, I implemented a Macrobenchmark for the main map screen that scrolls and zooms the map hard,
+        and ran it against the release before and after the refactor.
     </p>
-    <dl class="!mt-8 grid gap-4 sm:grid-cols-2">
-        <div class="rounded-xl border border-[#233554] bg-[#0d1f3c] p-5">
-            <dt class="text-xs font-bold uppercase tracking-widest">Code</dt>
-            <dd class="mt-2 text-3xl font-bold text-[#64ffda]">−20,000 lines</dd>
-            <dd class="mt-1 text-sm leading-6">of legacy code deleted.</dd>
+    <@cs.figure caption="Macrobenchmark of heavy scrolling and zooming on the main map. Samsung Galaxy S10 on Android 12, release build, 10 iterations with Perfetto traces, JIT only with no ahead-of-time compilation.">
+        <div class="p-5 sm:p-6">
+            <p class="text-sm font-semibold text-[#ccd6f6]">Worst-case frame overrun (P99)</p>
+            <p class="mt-1 text-xs">How far the slowest 1% of frames missed their display deadline. Lower is better.</p>
+            <div class="mt-5 space-y-4" role="img" aria-label="P99 frame overrun fell from 178.3 milliseconds in version 5.5 to 30.8 milliseconds in version 5.6, a reduction of 82.7 percent.">
+                <div>
+                    <div class="flex items-baseline justify-between text-xs"><span>Before · version 5.5</span><span class="font-['JetBrains_Mono'] text-[#ccd6f6]">178.3 ms</span></div>
+                    <div class="mt-1.5 h-3 rounded-r bg-[#64748b]" style="width: 100%;" title="Before, version 5.5: 178.3 ms"></div>
+                    <p class="mt-1 text-[11px] text-[#6b7a99]">close to a fifth of a second frozen</p>
+                </div>
+                <div>
+                    <div class="flex items-baseline justify-between text-xs"><span>After · version 5.6</span><span class="font-['JetBrains_Mono'] text-[#ccd6f6]">30.8 ms <span class="text-[#64ffda]">−82.7%</span></span></div>
+                    <div class="mt-1.5 h-3 rounded-r bg-[#64ffda]" style="width: 17.3%;" title="After, version 5.6: 30.8 ms"></div>
+                </div>
+            </div>
         </div>
-        <div class="rounded-xl border border-[#233554] bg-[#0d1f3c] p-5">
-            <dt class="text-xs font-bold uppercase tracking-widest">Performance</dt>
-            <dd class="mt-2 text-3xl font-bold text-[#64ffda]">82% better</dd>
-            <dd class="mt-1 text-sm leading-6">UI performance on the main map screen, measured with the Macrobenchmark suite.</dd>
+        <div class="overflow-x-auto border-t border-[#233554]">
+            <table class="w-full text-left text-sm">
+                <caption class="sr-only">Before and after benchmark results</caption>
+                <thead>
+                    <tr class="border-b border-[#233554] text-xs uppercase tracking-widest">
+                        <th class="px-3 py-3 font-bold sm:px-5">Metric</th>
+                        <th class="px-2 py-3 text-right font-bold sm:px-5">Before</th>
+                        <th class="px-2 py-3 text-right font-bold sm:px-5">After</th>
+                        <th class="px-2 py-3 text-right font-bold sm:px-5">Change</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-[#233554]/70 font-['JetBrains_Mono'] text-[11px] sm:text-[13px]">
+                    <#list [
+                        {"m": "Frame time, P50", "b": "11.87 ms", "a": "12.47 ms", "c": "+0.60 ms", "good": false},
+                        {"m": "Frame time, P95", "b": "27.15 ms", "a": "22.79 ms", "c": "−4.36 ms", "good": true},
+                        {"m": "Frame time, P99", "b": "41.91 ms", "a": "31.26 ms", "c": "−10.65 ms", "good": true},
+                        {"m": "Frame overrun, P99", "b": "178.34 ms", "a": "30.81 ms", "c": "−82.7%", "good": true},
+                        {"m": "Private RAM (RSS anon)", "b": "247.9 MB", "a": "217.3 MB", "c": "−30.6 MB", "good": true},
+                        {"m": "Mapped files (RSS file)", "b": "457.1 MB", "a": "413.4 MB", "c": "−43.7 MB", "good": true},
+                        {"m": "Java heap", "b": "65.8 MB", "a": "69.0 MB", "c": "+3.2 MB", "good": false}
+                    ] as r>
+                    <tr>
+                        <td class="px-3 py-2.5 font-['Inter'] text-[13px] text-[#a8b2d1] sm:px-5 sm:text-sm">${r.m}</td>
+                        <td class="whitespace-nowrap px-2 py-2.5 text-right sm:px-5">${r.b}</td>
+                        <td class="whitespace-nowrap px-2 py-2.5 text-right sm:px-5 text-[#ccd6f6]">${r.a}</td>
+                        <td class="whitespace-nowrap px-2 py-2.5 text-right sm:px-5 <#if r.good>text-[#64ffda]<#else>text-amber-200</#if>">${r.c}</td>
+                    </tr>
+                    </#list>
+                </tbody>
+            </table>
         </div>
-    </dl>
+    </@cs.figure>
+    <p>
+        The old screen had a decent typical frame but locked up under pressure.
+        The rebuild traded 0.6 ms on the median frame, still well inside the 16.6 ms budget for 60 fps, for removing the freezes:
+        worst-case overrun dropped by 82.7%, and the app's private memory fell by about 30 MB.
+        The rebuild also deleted around <strong class="font-semibold text-[#ccd6f6]">20,000 lines</strong> of legacy code.
+    </p>
+    <p>
+        Both runs used JIT only, so the next step is a Baseline Profile that pre-compiles the new screen's rendering paths and should improve these numbers further.
+    </p>
     <@cs.callout label="Why it worked">
         The biggest win was not Compose, it was deleting code.
         A single state per screen made whole classes of synchronisation bugs impossible, and the benchmark kept the team honest about whether each change helped.
@@ -269,32 +316,18 @@
     </p>
 </@cs.section>
 
-<@cs.section id="ai" number="05" title="AI Chat and Voice for what3words Pro" kicker="From idea to product">
+<@cs.section id="ai" number="05" title="The flagships of what3words Pro" kicker="AI Chat and Voice">
     <p>
-        For the Pro 5.0 release I led the Android side of AI Chat and AI Voice with one other Android engineer.
+        Version 5.0 was the turning point for the app: until then it had been completely free,
+        and 5.0 introduced a Pro subscription for advanced features.
+        AI Chat and AI Voice were its flagships, the features that had to make Pro worth paying for.
+    </p>
+    <p>
+        For that release I led the Android side of AI Chat and AI Voice with one other Android engineer.
         I worked with the product manager and designer from the first idea, gave early feedback on what was feasible, and turned the concept into a shippable product.
         On the engineering side I defined the architecture, the coding standards and the technologies we used.
     </p>
-    <p>
-        The interesting problems were not in calling a model.
-        They were in turning a conversation into something a location app can act on, reliably, while the user is still talking.
-    </p>
-    <@cs.figure caption="From speech to an action the app can trust. The model proposes; the app validates before anything becomes tappable.">
-        <ol class="grid gap-px bg-[#233554] sm:grid-cols-4">
-            <#list [
-                {"step": "Speak or type", "detail": "Voice is transcribed on the fly, so the request appears while the user is still talking."},
-                {"step": "Structured reply", "detail": "The model answers in a fixed schema: text to show, plus actions from a closed list such as search, navigate, save or share."},
-                {"step": "Validate", "detail": "Every three-word address in an action is checked against the what3words API before it is used."},
-                {"step": "Act", "detail": "Valid actions become cards with a map preview, one tap from navigation or sharing."}
-            ] as s>
-            <li class="bg-[#0d1f3c] p-5">
-                <p class="font-['JetBrains_Mono'] text-xs text-[#64ffda]">${(s?index + 1)?string["00"]}</p>
-                <p class="mt-2 font-semibold text-[#ccd6f6]">${s.step}</p>
-                <p class="mt-1 text-sm leading-6">${s.detail}</p>
-            </li>
-            </#list>
-        </ol>
-    </@cs.figure>
+    <p>Three problems shaped the engineering:</p>
     <ul class="list-none space-y-3">
         <li class="flex gap-3"><@dot/><span><strong class="font-semibold text-[#ccd6f6]">Unpredictable answers.</strong> Model output is treated like any untrusted input. Replies are parsed into a sealed set of actions the app already knows how to perform, so the model can never invent a new behaviour. Anything that does not parse falls back to a plain text reply instead of an error.</span></li>
         <li class="flex gap-3"><@dot/><span><strong class="font-semibold text-[#ccd6f6]">Addresses that look right but are not.</strong> A model can produce three plausible words that point to the wrong place, or nowhere. No address from the model is shown as tappable until the what3words API confirms it; if it fails, the app offers the closest AutoSuggest matches instead.</span></li>
