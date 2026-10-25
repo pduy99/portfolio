@@ -105,7 +105,7 @@ The portfolio content is driven by `portfolio-config.json`. You can modify this 
 -   Projects
 
 ## Deployment
-The server is hosted on my [Raspberry Pi 5](https://www.raspberrypi.com/products/raspberry-pi-5/) and deployed at https://phpduy.info, thanks to [Cloudflare Tunnel](https://www.cloudflare.com/en-gb/products/tunnel/).
+The server is hosted on my [Raspberry Pi 5](https://www.raspberrypi.com/products/raspberry-pi-5/) and deployed at https://phpduy.dev, thanks to [Cloudflare Tunnel](https://www.cloudflare.com/en-gb/products/tunnel/).
 
 ## 📄 License
 
