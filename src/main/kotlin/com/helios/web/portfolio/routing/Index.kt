@@ -2,10 +2,7 @@ package com.helios.web.portfolio.routing
 
 import com.helios.web.portfolio.data.DataProvider
 import com.helios.web.portfolio.stats.Target
-import com.helios.web.portfolio.stats.clientIp
-import com.helios.web.portfolio.stats.statsStore
-import io.ktor.http.HttpHeaders
-import io.ktor.server.request.header
+import com.helios.web.portfolio.stats.recordVisit
 import io.ktor.server.freemarker.FreeMarkerContent
 import io.ktor.server.resources.get
 import io.ktor.server.response.respond
@@ -19,9 +16,7 @@ fun Route.index() {
         val configurableDataFile = File(cvDirectory, "portfolio-config.json")
         val dataProvider = DataProvider(configurableDataFile)
 
-        call.application.statsStore.record(
-            Target.SITE, call.clientIp(), call.request.header(HttpHeaders.UserAgent)
-        )
+        call.recordVisit(Target.SITE)
 
         val profile = dataProvider.getProfileData()
         val content = dataProvider.getContentData()
