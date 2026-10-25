@@ -2,6 +2,8 @@ package com.helios.web.portfolio
 
 import io.ktor.server.application.Application
 import io.ktor.server.application.log
+import io.ktor.util.AttributeKey
+import java.net.URI
 import java.security.MessageDigest
 
 /** Public facts about the deployed site that templates and routes share. */
@@ -13,7 +15,12 @@ data class Site(
      * browsers fetch the new file after every deploy that changes it.
      */
     val cssVersion: String,
-)
+) {
+    /** Host part of [baseUrl], used to recognise the site as its own referrer. */
+    val host: String get() = URI(baseUrl).host
+}
+
+val SiteKey = AttributeKey<Site>("Site")
 
 private const val DEFAULT_BASE_URL = "https://phpduy.dev"
 private const val STYLESHEET = "static/css/site.css"

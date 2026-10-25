@@ -19,6 +19,7 @@ fun Route.seo(site: Site) {
             """
             |User-agent: *
             |Disallow: /stats
+            |Disallow: /r/
             |
             |Sitemap: ${site.baseUrl}/sitemap.xml
             |""".trimMargin(),
