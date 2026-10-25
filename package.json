@@ -1,0 +1,12 @@
+{
+  "name": "helios-portfolio-css",
+  "private": true,
+  "description": "Builds the site's Tailwind stylesheet. The Ktor app serves the output from src/main/resources/static/css.",
+  "scripts": {
+    "build:css": "BROWSERSLIST_IGNORE_OLD_DATA=1 tailwindcss -i src/main/css/site.css -o src/main/resources/static/css/site.css --minify",
+    "watch:css": "tailwindcss -i src/main/css/site.css -o src/main/resources/static/css/site.css --watch"
+  },
+  "devDependencies": {
+    "tailwindcss": "3.4.17"
+  }
+}

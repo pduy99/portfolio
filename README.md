@@ -23,6 +23,7 @@ A versatile Ktor web server that hosts a comprehensive personal portfolio, a dow
 ### Prerequisites
 
 - Java 11 or higher
+- Node.js 18 or higher (builds the stylesheet)
 - Gradle (included in wrapper)
 - Docker (optional, for containerized run)
 
@@ -41,7 +42,12 @@ A versatile Ktor web server that hosts a comprehensive personal portfolio, a dow
 ### Running the Server
 
 **Using Gradle:**
+
+The stylesheet is compiled from the templates with Tailwind CSS, so build it before the first run.
+Use `npm run watch:css` instead while editing templates.
 ```bash
+npm install
+npm run build:css
 ./gradlew run
 ```
 

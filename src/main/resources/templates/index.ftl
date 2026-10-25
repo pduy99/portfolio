@@ -3,9 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>${profile.name}</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Add Inter font -->
+    <#assign pageTitle = "${profile.name} - ${profile.title}">
+    <#assign pageDescription = "${profile.name}, ${profile.title}. ${profile.about}">
+    <title>${pageTitle?html}</title>
+    <meta name="description" content="${pageDescription?html}">
+    <link rel="canonical" href="${site.baseUrl}/">
+    <meta name="theme-color" content="#0a192f">
+
+    <!-- Link previews (Open Graph and X/Twitter) -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="${profile.name?html}">
+    <meta property="og:title" content="${pageTitle?html}">
+    <meta property="og:description" content="${profile.about?html}">
+    <meta property="og:url" content="${site.baseUrl}/">
+    <meta property="og:image" content="${site.baseUrl}/static/images/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="${pageTitle?html}">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <link rel="icon" href="/favicon.ico" sizes="32x32">
+    <link rel="icon" href="/static/images/icons/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="stylesheet" href="/static/css/site.css?v=${site.cssVersion}">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         .spotlight {

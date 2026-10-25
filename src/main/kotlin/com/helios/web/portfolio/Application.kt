@@ -53,13 +53,16 @@ fun Application.module() {
     // You can use <!-- @ftlvariable --> to annotate types inside the templates
     // in a way that works with IntelliJ IDEA Ultimate.
     // You can check the `resources/templates/*.ftl` files for reference.
+    val site = loadSite()
     install(FreeMarker) {
         templateLoader = ClassTemplateLoader(this::class.java.classLoader, "templates")
+        // Available to every template as ${site.baseUrl} and ${site.cssVersion}.
+        setSharedVariable("site", site)
     }
 
     configureStats()
 
-    configureRouting()
+    configureRouting(site)
 }
 
 /**
