@@ -41,6 +41,15 @@ object CaseStudies {
                 "Multiplatform search library that iOS can extend in Swift, and the AI features that launched Pro.",
             previewImage = "/static/media/case-studies/what3words/preview.jpg",
         ),
+        CaseStudy(
+            slug = "subly",
+            template = "case-studies/subly.ftl",
+            title = "Subly",
+            summary = "Building Subly, live translated captions that run entirely on an Android phone: choosing speech " +
+                "models by on-device measurement, handing translation from ML Kit to Gemma 4, and cutting the time " +
+                "to the first translated words from 11.5 to 2.2 seconds.",
+            previewImage = "/static/media/case-studies/subly/preview.jpg",
+        ),
     )
 
     private val bySlug = all.associateBy { it.slug }
