@@ -126,4 +126,12 @@ class CaseStudyTest {
         assertContains(html, """alt="Subly app icon"""")
         assertFalse(html.contains("""alt="Subly" loading="lazy" width="200""""), "an icon must not use the framed thumbnail")
     }
+
+    @Test
+    fun `subly reserves a frame for its demo until the recording exists`() = withApp {
+        val html = client.get("/projects/subly").bodyAsText()
+        assertContains(html, "Demo recording coming soon")
+        assertFalse(html.contains("""id="demo-video""""), "no video element until the recording ships")
+        assertNotNull(javaClass.classLoader.getResource("static/media/case-studies/subly/app-icon.png"))
+    }
 }
