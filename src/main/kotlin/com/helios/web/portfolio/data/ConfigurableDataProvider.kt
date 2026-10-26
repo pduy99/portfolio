@@ -67,6 +67,8 @@ data class ProjectConfig(
     val technologies: List<String>,
     /** Slug of a case study in [CaseStudies]; unknown slugs are ignored. */
     val caseStudy: String? = null,
+    /** Short release state shown as a badge, such as "In closed testing". */
+    val status: String? = null,
 )
 
 class ConfigurableDataProvider(
@@ -124,7 +126,8 @@ class ConfigurableDataProvider(
                     imageUrl = proj.imageUrl ?: "",
                     description = proj.description,
                     technologies = proj.technologies.map { TechnologyTag(it) },
-                    caseStudyPath = proj.caseStudy?.let { CaseStudies.find(it) }?.path
+                    caseStudyPath = proj.caseStudy?.let { CaseStudies.find(it) }?.path,
+                    status = proj.status?.takeIf { it.isNotBlank() }
                 )
             }
         )
