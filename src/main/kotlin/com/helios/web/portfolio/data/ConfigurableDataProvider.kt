@@ -69,6 +69,8 @@ data class ProjectConfig(
     val caseStudy: String? = null,
     /** Short release state shown as a badge, such as "In closed testing". */
     val status: String? = null,
+    /** "icon" shows [imageUrl] as a large app icon without a frame; anything else as a framed screenshot. */
+    val imageStyle: String? = null,
 )
 
 class ConfigurableDataProvider(
@@ -127,7 +129,8 @@ class ConfigurableDataProvider(
                     description = proj.description,
                     technologies = proj.technologies.map { TechnologyTag(it) },
                     caseStudyPath = proj.caseStudy?.let { CaseStudies.find(it) }?.path,
-                    status = proj.status?.takeIf { it.isNotBlank() }
+                    status = proj.status?.takeIf { it.isNotBlank() },
+                    imageIsIcon = proj.imageStyle == "icon"
                 )
             }
         )

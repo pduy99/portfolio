@@ -102,7 +102,7 @@ class CaseStudyTest {
     }
 
     @Test
-    fun `a project without a link shows a plain title and its status badge`() = withApp(
+    fun `a project without a link shows a plain title, its status badge and its icon`() = withApp(
         portfolioConfig = """
         {
           "profile": { "name": "Duy Pham", "title": "Senior Android Engineer", "about": "About.",
@@ -111,8 +111,8 @@ class CaseStudyTest {
             "about": { "paragraphs": ["Hi."] },
             "experience": [],
             "projects": [
-              { "name": "Subly", "url": null, "imageUrl": null, "description": "Live captions.",
-                "technologies": [], "status": "In closed testing" }
+              { "name": "Subly", "url": null, "imageUrl": "/static/images/projects/subly-icon.png", "description": "Live captions.",
+                "technologies": [], "status": "In closed testing", "imageStyle": "icon" }
             ]
           }
         }
@@ -123,5 +123,7 @@ class CaseStudyTest {
         assertContains(html, "In closed testing")
         assertFalse(html.contains("""href="" target="_blank""""), "a project with no url must not render an empty link")
         assertContains(html, """href="https://github.com/pduy99?tab=repositories"""")
+        assertContains(html, """alt="Subly app icon"""")
+        assertFalse(html.contains("""alt="Subly" loading="lazy" width="200""""), "an icon must not use the framed thumbnail")
     }
 }

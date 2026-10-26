@@ -10,5 +10,7 @@ data class ProjectItem(
     val caseStudyPath: String? = null,
     /** Short release state shown as a badge, such as "In closed testing". */
     val status: String? = null,
+    /** True when [imageUrl] is an app icon, shown large and without a frame. */
+    val imageIsIcon: Boolean = false,
     val technologies: List<TechnologyTag> = emptyList()
 )
