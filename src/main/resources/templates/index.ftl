@@ -184,7 +184,8 @@
                                 <#else>
                                     <div class="z-10 sm:col-span-8">
                                 </#if>
-                                    <h3>
+                                    <h3 class="flex flex-wrap items-center gap-x-3 gap-y-1">
+                                        <#if project.url?has_content>
                                         <a class="inline-flex items-baseline font-medium leading-tight text-slate-200 hover:text-[#64ffda] focus-visible:text-[#64ffda] group/link text-base" href="${project.url}" target="_blank" rel="noreferrer">
                                             <span>
                                                 ${project.name}
@@ -195,6 +196,12 @@
                                                 </span>
                                             </span>
                                         </a>
+                                        <#else>
+                                        <span class="font-medium leading-tight text-slate-200">${project.name}</span>
+                                        </#if>
+                                        <#if project.status??>
+                                        <span class="rounded-full border border-amber-200/30 px-2 py-0.5 text-[11px] font-semibold uppercase tracking-wider text-amber-200">${project.status}</span>
+                                        </#if>
                                     </h3>
                                     <p class="mt-2 text-sm leading-normal">${project.description}</p>
                                     <#if project.caseStudyPath??>
@@ -220,6 +227,14 @@
                         </li>
                         </#list>
                     </ul>
+                    <#list profile.social as link>
+                        <#if link.name == "GitHub">
+                    <a href="${link.url}?tab=repositories" target="_blank" rel="noreferrer" class="group/more inline-flex items-center gap-1.5 text-sm font-semibold text-slate-200 hover:text-[#64ffda] focus-visible:text-[#64ffda]">
+                        More projects on GitHub
+                        <svg viewBox="0 0 20 20" fill="currentColor" class="h-4 w-4 transition-transform group-hover/more:-translate-y-1 group-hover/more:translate-x-1 motion-reduce:transition-none" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z" clip-rule="evenodd"/></svg>
+                    </a>
+                        </#if>
+                    </#list>
                 </section>
             </main>
         </div>

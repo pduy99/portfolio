@@ -100,4 +100,28 @@ class CaseStudyTest {
         assertContains(html, """href="/projects/what3words"""")
         assertFalse(html.contains("/projects/does-not-exist"))
     }
+
+    @Test
+    fun `a project without a link shows a plain title and its status badge`() = withApp(
+        portfolioConfig = """
+        {
+          "profile": { "name": "Duy Pham", "title": "Senior Android Engineer", "about": "About.",
+                       "social": [ { "type": "GitHub", "url": "https://github.com/pduy99" } ] },
+          "content": {
+            "about": { "paragraphs": ["Hi."] },
+            "experience": [],
+            "projects": [
+              { "name": "Subly", "url": null, "imageUrl": null, "description": "Live captions.",
+                "technologies": [], "status": "In closed testing" }
+            ]
+          }
+        }
+        """.trimIndent()
+    ) {
+        val html = client.get("/").bodyAsText()
+        assertContains(html, """<span class="font-medium leading-tight text-slate-200">Subly</span>""")
+        assertContains(html, "In closed testing")
+        assertFalse(html.contains("""href="" target="_blank""""), "a project with no url must not render an empty link")
+        assertContains(html, """href="https://github.com/pduy99?tab=repositories"""")
+    }
 }
